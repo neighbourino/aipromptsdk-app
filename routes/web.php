@@ -1,10 +1,25 @@
 <?php
 
+use App\Livewire\Prompts\IndexPrompts;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
+
+
+Route::get('/prompts', IndexPrompts::class)->name('prompts.index');
+
+
+Route::get('/guides', function () {
+    return view('guides.index');
+})->name('guides.index');
+
+Route::get('/artikler', function () {
+    return view('articles.index');
+})->name('articles.index');
+
+
 
 Route::middleware([
     'auth:sanctum',
