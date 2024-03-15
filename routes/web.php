@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Prompts\IndexPrompts;
+use App\Livewire\Prompts\ShowPrompt;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,6 +10,8 @@ Route::get('/', function () {
 
 
 Route::get('/prompts', IndexPrompts::class)->name('prompts.index');
+
+Route::get('/prompts/{id}', ShowPrompt::class)->name('prompts.show');
 
 
 Route::get('/guides', function () {
