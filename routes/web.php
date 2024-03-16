@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 Route::get('/prompts', IndexPrompts::class)->name('prompts.index');
 
-Route::get('/prompts/{id}', ShowPrompt::class)->name('prompts.show');
+Route::get('/prompts/{prompt}', ShowPrompt::class)->name('prompts.show');
 
 
 Route::get('/guides', function () {
