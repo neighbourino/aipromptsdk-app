@@ -16,7 +16,12 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 
+use Filament\Forms\Components\SpatieTagsInput;
+use Filament\Forms\Components\Select;
+
 use Filament\Tables\Columns\TextColumn;
+
+
 
 class PromptResource extends Resource
 {
@@ -34,6 +39,14 @@ class PromptResource extends Resource
                 Textarea::make('role_system'),
                 Textarea::make('role_user'),            
                 RichEditor::make('example_output'),
+
+                Select::make('type')
+                ->options([
+                    'work' => 'Work',
+                    'play' => 'Play'
+                ]),
+
+                SpatieTagsInput::make('tags')
             ])->columns(1);
     }
 

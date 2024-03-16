@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div id="particles-js" class="absolute w-full bg-indigo-100"></div>
+    <div id="particles-js" class="absolute w-full h-full bg-indigo-100"></div>
 
 
     <div class="relative z-10">
