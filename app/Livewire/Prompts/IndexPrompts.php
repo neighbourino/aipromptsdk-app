@@ -8,7 +8,7 @@ use Livewire\Component;
 class IndexPrompts extends Component
 {
 
-    public $prompts;
+    public $prompts ;
 
     public function render()
     {
