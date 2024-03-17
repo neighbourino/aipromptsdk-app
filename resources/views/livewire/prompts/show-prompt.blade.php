@@ -1,15 +1,65 @@
 <div>
 
-    <div class="py-24 sm:py-32">
+    <div class="py-24 sm:py-12">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="overflow-hidden rounded-lg bg-white shadow">
+                <h2 class="sr-only" id="profile-overview-title">Profile Overview</h2>
+                <div class="bg-white p-6">
+                    <div class="sm:flex sm:items-center sm:justify-between">
+                        <div class="sm:flex sm:space-x-5">
+                            <div class="flex-shrink-0">
+
+                                <div class="w-20 h-20 p-1 rounded-full shadow-inner flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                                    </svg>
+                                </div>
+
+                            </div>
+                            <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
+                                {{-- <p class="text-sm font-medium text-gray-600">Welcome back,</p> --}}
+                                <h1 class="text-xl font-bold text-gray-900 sm:text-2xl">{{ $prompt->title }}</h1>
+                                <div class="text-sm font-medium text-gray-600">{!! $prompt->description !!}</div>
+                            </div>
+                        </div>
+                        {{-- <div class="mt-5 flex justify-center sm:mt-0">
+                            <a href="#"
+                                class="flex items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">View
+                                profile</a>
+                        </div> --}}
+                    </div>
+                </div>
+                <div
+                    class="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                    <div class="px-6 py-5 text-center text-xs font-medium">
+                        <span class="block text-gray-900">Senest opdateret</span>
+                        <span class="text-gray-500">{{ $prompt->updated_at->format('d-m-Y') }}</span>
+                    </div>
+                    <div class="px-6 py-5 text-center text-sm font-medium">
+
+                    </div>
+                    <div class="px-6 py-5 text-center text-sm font-medium">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="py-24 sm:py-12">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
-            <div class="overflow-hidden bg-white shadow sm:rounded-lg mb-6">
+            {{-- <div class="overflow-hidden bg-white shadow sm:rounded-lg mb-6">
                 <div class="px-4 py-6 sm:px-6">
                     <h3 class="text-2xl font-semibold leading-7 text-gray-900">{{ $prompt->title }}</h3>
                     <div class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">{!! $prompt->description !!}</div>
                 </div>
 
-            </div>
+            </div> --}}
 
 
             <div class="overflow-hidden bg-white shadow sm:rounded-lg mb-12">

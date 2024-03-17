@@ -1,6 +1,20 @@
 <div>
 
-    <div class="bg-white" x-data="{ open: false }" @keydown.window.escape="open = false">
+    <div class=" py-6 sm:py-12">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:mx-0">
+                <p class="text-base font-semibold leading-7 text-indigo-600 ">Bibliotek</p>
+                <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Prompts</h2>
+                <p class="mt-6 text-lg leading-8 text-gray-600">Søg og filtrer på hele vores kuraterede bibilotek af AI
+                    prompts på dansk.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="" x-data="{ open: false }" @keydown.window.escape="open = false">
         <!-- Mobile filter dialog -->
 
         <div x-show="open" class="relative z-40 lg:hidden"
@@ -104,8 +118,8 @@
                                             class="ml-3 min-w-0 flex-1 text-gray-500">Beige</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-mobile-color-2" name="color[]" value="blue" type="checkbox"
-                                            checked=""
+                                        <input id="filter-mobile-color-2" name="color[]" value="blue"
+                                            type="checkbox" checked=""
                                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                         <label for="filter-mobile-color-2"
                                             class="ml-3 min-w-0 flex-1 text-gray-500">Blue</label>
@@ -288,11 +302,11 @@
         </div>
 
 
-        <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex items-baseline justify-end border-b border-gray-200 pb-6 pt-12">
+        <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12 ">
+            <div class="flex items-baseline justify-end py-6 ">
 
 
-                @if (1 == 2)
+                @if (1 == 1)
                     <div class="flex items-center">
                         <div x-data="Components.menu({ open: false })" x-init="init()"
                             @keydown.escape.stop="open = false; focusButton()" @click.away="onClickAway($event)"
@@ -337,7 +351,7 @@
                                         :class="{ 'bg-gray-100': activeIndex === 0 }" role="menuitem" tabindex="-1"
                                         id="menu-item-0" @mouseenter="onMouseEnter($event)"
                                         @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)"
-                                        @click="open = false; focusButton()">Most Popular</a>
+                                        @click="open = false; focusButton()">Mest populære</a>
                                     <a href="#" class="text-gray-500 block px-4 py-2 text-sm"
                                         x-state-description="undefined: &quot;font-medium text-gray-900&quot;, undefined: &quot;text-gray-500&quot;"
                                         :class="{ 'bg-gray-100': activeIndex === 1 }" role="menuitem" tabindex="-1"
@@ -390,8 +404,7 @@
                 @endif
             </div>
 
-            <section aria-labelledby="products-heading" class="pb-24 pt-6">
-                <h2 id="products-heading" class="sr-only">Products</h2>
+            <section aria-labelledby="products-heading" class="pb-24 pt-6 bg-white rounded shadow p-6 shadow">
 
                 <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                     <!-- Filters -->
