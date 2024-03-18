@@ -15,13 +15,14 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
-
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\Select;
 
 use Filament\Tables\Columns\TextColumn;
 
-
+use RalphJSmit\Filament\SEO\SEO;
 
 class PromptResource extends Resource
 {
@@ -46,7 +47,11 @@ class PromptResource extends Resource
                     'play' => 'Play'
                 ]),
 
-                SpatieTagsInput::make('tags')
+                SpatieTagsInput::make('tags'),
+
+                Section::make([
+                SEO::make()
+            ]),
             ])->columns(1);
     }
 

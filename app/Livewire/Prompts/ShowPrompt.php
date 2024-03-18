@@ -4,6 +4,7 @@ namespace App\Livewire\Prompts;
 
 use App\Models\Prompt;
 use Livewire\Component;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class ShowPrompt extends Component
 {
