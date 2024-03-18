@@ -11,6 +11,8 @@ class IndexPrompts extends Component
 
     #public $prompts;
 
+    public $searchTerm = '';
+
     public $tagOptions;
 
     public $tags = [];
@@ -25,6 +27,8 @@ class IndexPrompts extends Component
 
     public function render()
     {
+
+        $this->hasActiveFilters = false;
 
         $prompts = Prompt::query();
 
@@ -43,6 +47,15 @@ class IndexPrompts extends Component
             $this->hasActiveFilters = true;
         }
 
+        if(isset($this->searchTerm)) {
+            $searchTerm = '%'.$this->searchTerm.'%';
+            if(trim($this->searchTerm) != '') {
+                $prompts = $prompts->where('title', 'LIKE', $searchTerm)->orWhere('description', 'LIKE', $searchTerm);
+
+                $this->hasActiveFilters = true;
+            }
+        }
+
         return view('livewire.prompts.index-prompts', [
             'prompts' => $prompts->get()
         ]);
@@ -51,6 +64,8 @@ class IndexPrompts extends Component
 
     public function resetFilters() {
         $this->tags = [];
+        $this->types = [];
+        $this->searchTerm = '';
     }
 
 }
