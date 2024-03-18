@@ -18,6 +18,8 @@
                     </x-nav-link>
 
 
+
+
                     {{-- <x-nav-link href="{{ route('guides.index') }}" :active="request()->routeIs('guides.index')">
                         {{ __('Guides') }}
                     </x-nav-link>
@@ -29,6 +31,23 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+
+                {{-- <span class="block h-full bg-gray-100 px-3">
+                    @if (Route::isLocalized() || Route::isFallback())
+                        <ul class="h-full text-xs flex flex-row justify-center items-center  text-gray-400">
+                            @foreach (LocaleConfig::getLocales() as $locale)
+                                @if (!App::isLocale($locale))
+                                    <li class="px-1">
+                                        <a href="{{ Route::localizedUrl($locale) }}">
+                                            {{ strtoupper($locale) }}
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    @endif
+                </span> --}}
+
 
                 @auth
                     <!-- Teams Dropdown -->

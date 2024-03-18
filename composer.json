@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "codezero/laravel-localized-routes": "^4.0",
         "drewm/mailchimp-api": "^2.5",
         "filament/filament": "^3.2",
         "filament/spatie-laravel-tags-plugin": "^3.2",
@@ -73,7 +74,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "codezero/composer-preload-files": true
         }
     },
     "minimum-stability": "stable",

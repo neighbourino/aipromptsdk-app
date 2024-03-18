@@ -11,7 +11,12 @@ class ShowPrompt extends Component
 
     public Prompt $prompt;
 
-    public function mount(Prompt $prompt){
+    public function mount(Prompt $prompt)
+    {
+
+        #dd(App::getLocale());
+
+
         $this->prompt = $prompt;
     }
 
