@@ -8,13 +8,16 @@ use \Spatie\Tags\HasTags;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
+use Spatie\Translatable\HasTranslations;
 
 class Prompt extends Model
 {
-    use HasFactory, HasTags, HasSEO;
+    use HasFactory, HasTags, HasSEO, HasTranslations;
     
 
     protected $guarded = [];
+
+    public $translatable = ['title', 'description'];
 
 
     public function getDynamicSEOData(): SEOData

@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Filament\Resources\PromptResource\Pages;
+namespace App\Filament\Resources\TagResource\Pages;
 
-use App\Filament\Resources\PromptResource;
+use App\Filament\Resources\TagResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListPrompts extends ListRecords
+class ListTags extends ListRecords
 {
 
     use ListRecords\Concerns\Translatable;
 
-    protected static string $resource = PromptResource::class;
+
+    protected static string $resource = TagResource::class;
 
     protected function getHeaderActions(): array
     {

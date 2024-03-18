@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\PromptResource\Pages;
+namespace App\Filament\Resources\TagResource\Pages;
 
-use App\Filament\Resources\PromptResource;
+use App\Filament\Resources\TagResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditPrompt extends EditRecord
+class EditTag extends EditRecord
 {
 
-    
     use EditRecord\Concerns\Translatable;
 
-    protected static string $resource = PromptResource::class;
+    protected static string $resource = TagResource::class;
 
     protected function getHeaderActions(): array
     {

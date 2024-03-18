@@ -24,8 +24,13 @@ use Filament\Tables\Columns\TextColumn;
 
 use RalphJSmit\Filament\SEO\SEO;
 
+use Filament\Resources\Concerns\Translatable;
+
 class PromptResource extends Resource
 {
+    use Translatable;
+
+
     protected static ?string $model = Prompt::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -88,5 +93,11 @@ class PromptResource extends Resource
             'create' => Pages\CreatePrompt::route('/create'),
             'edit' => Pages\EditPrompt::route('/{record}/edit'),
         ];
+    }
+
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['da', 'en'];
     }
 }
