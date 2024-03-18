@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->text('role_system')->nullable();
             $table->text('role_user')->nullable();
-            
+
 
             $table->text('example_output')->nullable();
 

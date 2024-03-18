@@ -643,7 +643,7 @@
                                 @foreach ($prompts as $key => $prompt)
                                     <li
                                         class="overflow-hidden rounded-xl border border-gray-200 hover:shadow transition-shadow">
-                                        <a href="{{ route('prompts.show', $prompt->id) }}" class="">
+                                        <a href="{{ route('prompts.show', $prompt->slug) }}" class="">
                                             <div
                                                 class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
                                                 {{-- <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple"

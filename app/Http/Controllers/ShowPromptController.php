@@ -13,11 +13,7 @@ class ShowPromptController extends Controller
     public function __invoke(Prompt $prompt)
     {
         
-        // $prompt->seo->update([
-        //     'title' => $prompt->title,
-        //     'description' => $prompt->short_description,
-        // ]);
-
+ 
         return view('prompts.show', compact('prompt'));
         
     }
