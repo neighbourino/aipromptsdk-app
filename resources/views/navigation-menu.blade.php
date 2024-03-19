@@ -32,21 +32,23 @@
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
 
-                {{-- <span class="block h-full bg-gray-100 px-3">
+                <span class="block h-full bg-gray-100 px-3">
                     @if (Route::isLocalized() || Route::isFallback())
                         <ul class="h-full text-xs flex flex-row justify-center items-center  text-gray-400">
                             @foreach (LocaleConfig::getLocales() as $locale)
-                                @if (!App::isLocale($locale))
-                                    <li class="px-1">
+                                <li class="px-1">
+                                    @if (!App::isLocale($locale))
                                         <a href="{{ Route::localizedUrl($locale) }}">
                                             {{ strtoupper($locale) }}
                                         </a>
-                                    </li>
-                                @endif
+                                    @else
+                                        <span class="font-bold">{{ strtoupper($locale) }}</span>
+                                    @endif
+                                </li>
                             @endforeach
                         </ul>
                     @endif
-                </span> --}}
+                </span>
 
 
                 @auth

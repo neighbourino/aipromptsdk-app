@@ -5,12 +5,12 @@ return [
     /**
      * The locales you wish to support.
      */
-    // 'supported_locales' => [
-    //     'da' => 'aiprompts.test',
-    //     'en' => 'en.aiprompts.test',
-    // ],
+    'supported_locales' => [
+        'da' => env('LOCALE_DOMAIN_DA', 'aiprompts.dk'),
+        'en' => env('LOCALE_DOMAIN_EN', 'aipromptshq.com'),
+    ],
 
-    'supported_locales' => ['da', 'en'],
+    #'supported_locales' => ['da', 'en'],
 
     /**
      * The fallback locale to use when generating a route URL
@@ -22,7 +22,7 @@ return [
      * If you have a main locale, and you want to omit
      * its slug from the URL, specify it here.
      */
-    'omitted_locale' => true,
+    'omitted_locale' => false,
 
     /**
      * Set this option to true if you want to redirect URLs
