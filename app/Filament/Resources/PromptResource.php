@@ -58,6 +58,15 @@ class PromptResource extends Resource
                 Hidden::make('is_slug_changed_manually')
                     ->default(false)
                     ->dehydrated(false),
+
+                Select::make('platform')
+                    ->options([
+                        'ChatGPT' => 'ChatGPT',
+                        'Midjourney' => 'Midjourney',
+                        'Dall-E' => 'Dall-E'
+                    ]),
+                TextInput::make('version_tested')
+                    ->required(),
                 RichEditor::make('description'),
                 Textarea::make('short_description'),
                 Textarea::make('role_system'),

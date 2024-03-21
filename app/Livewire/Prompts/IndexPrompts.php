@@ -17,10 +17,18 @@ class IndexPrompts extends Component
 
     public $tags = [];
     public $types = [];
+    public $platforms = [];
+
+    public $platformOptions = [
+        'ChatGPT' => 'ChatGPT',
+        'Midjourney' => 'Midjourney',
+        'Dall-E' => 'Dall-E'
+    ];
 
     public $hasActiveFilters = false;
 
-    public function mount(){
+    public function mount()
+    {
 
         $this->tagOptions = Tag::all();
     }
@@ -32,24 +40,29 @@ class IndexPrompts extends Component
 
         $prompts = Prompt::query();
 
-        if(isset($this->tags) && count($this->tags)) {
+        if (isset($this->tags) && count($this->tags)) {
             $prompts = $prompts->whereHas('tags', function ($q) {
                 $q->whereIn('id', $this->tags);
-
             });
 
             $this->hasActiveFilters = true;
         }
 
-        if(isset($this->types) && count($this->types)) {
+        if (isset($this->platforms) && count($this->platforms)) {
+            $prompts = $prompts->whereIn('platform', $this->platforms);
+
+            $this->hasActiveFilters = true;
+        }
+
+        if (isset($this->types) && count($this->types)) {
             $prompts = $prompts->whereIn('type', $this->types);
 
             $this->hasActiveFilters = true;
         }
 
-        if(isset($this->searchTerm)) {
-            $searchTerm = '%'.$this->searchTerm.'%';
-            if(trim($this->searchTerm) != '') {
+        if (isset($this->searchTerm)) {
+            $searchTerm = '%' . $this->searchTerm . '%';
+            if (trim($this->searchTerm) != '') {
                 $prompts = $prompts->where('title', 'LIKE', $searchTerm)->orWhere('description', 'LIKE', $searchTerm);
 
                 $this->hasActiveFilters = true;
@@ -62,10 +75,10 @@ class IndexPrompts extends Component
     }
 
 
-    public function resetFilters() {
+    public function resetFilters()
+    {
         $this->tags = [];
         $this->types = [];
         $this->searchTerm = '';
     }
-
 }

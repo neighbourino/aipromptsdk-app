@@ -468,7 +468,7 @@
                                     class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
                                     aria-controls="filter-section-0" @click="open = !open" aria-expanded="false"
                                     x-bind:aria-expanded="open.toString()">
-                                    <span class="font-medium text-gray-900">Tags</span>
+                                    <span class="font-medium text-gray-900">Platform</span>
                                     <span class="ml-6 flex items-center">
                                         <svg class="h-5 w-5"
                                             x-description="Expand icon, show/hide based on section open state."
@@ -495,13 +495,114 @@
 
 
 
+                                    @foreach ($platformOptions as $key => $platform)
+                                        <div class="flex items-center">
+                                            <input id="filter-platform-{{ $platform }}" name="platforms[]"
+                                                value="{{ $platform }}" type="checkbox"
+                                                wire:model.live="platforms"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-platform-{{ $platform }}"
+                                                class="cursor-pointer ml-3 text-sm text-gray-600">
+                                                {{ $platform }}</label>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div x-data="{ open: true }" class="border-b border-gray-200 py-6">
+                            <h3 class="-my-3 flow-root">
+                                <button type="button" x-description="Expand/collapse section button"
+                                    class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
+                                    aria-controls="filter-section-0" @click="open = !open" aria-expanded="false"
+                                    x-bind:aria-expanded="open.toString()">
+                                    <span class="font-medium text-gray-900">Type</span>
+                                    <span class="ml-6 flex items-center">
+                                        <svg class="h-5 w-5"
+                                            x-description="Expand icon, show/hide based on section open state."
+                                            x-show="!(open)" viewBox="0 0 20 20" fill="currentColor"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5"
+                                            x-description="Collapse icon, show/hide based on section open state."
+                                            x-show="open" viewBox="0 0 20 20" fill="currentColor"
+                                            aria-hidden="true" style="display: none;">
+                                            <path fill-rule="evenodd"
+                                                d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </h3>
+                            <div class="pt-6" x-description="Filter section, show/hide based on section state."
+                                id="filter-section-2" x-show="open" style="display: none;">
+                                <div class="space-y-4">
+
+
+
+                                    @foreach (['work', 'play'] as $key => $type)
+                                        <div class="flex items-center">
+                                            <input id="filter-type-{{ $type }}" name="types[]"
+                                                value="{{ $type }}" type="checkbox" wire:model.live="types"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-type-{{ $type }}"
+                                                class="cursor-pointer ml-3 px-3 py-1 text-xs text-white rounded {{ $type == 'work' ? 'bg-blue-400' : 'bg-indigo-400' }}">
+                                                {{ $type }}</label>
+
+
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div x-data="{ open: true }" class="border-b border-gray-200 py-6">
+                            <h3 class="-my-3 flow-root">
+                                <button type="button" x-description="Expand/collapse section button"
+                                    class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
+                                    aria-controls="filter-section-0" @click="open = !open" aria-expanded="false"
+                                    x-bind:aria-expanded="open.toString()">
+                                    <span class="font-medium text-gray-900">Tags</span>
+                                    <span class="ml-6 flex items-center">
+                                        <svg class="h-5 w-5"
+                                            x-description="Expand icon, show/hide based on section open state."
+                                            x-show="!(open)" viewBox="0 0 20 20" fill="currentColor"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5"
+                                            x-description="Collapse icon, show/hide based on section open state."
+                                            x-show="open" viewBox="0 0 20 20" fill="currentColor"
+                                            aria-hidden="true" style="display: none;">
+                                            <path fill-rule="evenodd"
+                                                d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </h3>
+
+                            <div class="pt-6" x-description="Filter section, show/hide based on section state."
+                                id="filter-section-0" x-show="open" style="display: none;">
+                                <div class="space-y-4">
+
+
+
                                     @foreach ($tagOptions as $key => $tag)
                                         <div class="flex items-center">
                                             <input id="filter-tag-{{ $tag->id }}" name="tags[]"
                                                 value="{{ $tag->id }}" type="checkbox" wire:model.live="tags"
                                                 class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                             <label for="filter-tag-{{ $tag->id }}"
-                                                class="ml-3 text-sm text-gray-600">
+                                                class="cursor-pointer ml-3 text-sm text-gray-600">
                                                 {{ $tag->name }}</label>
                                         </div>
                                     @endforeach
@@ -540,6 +641,7 @@
                                         </span>
                                     </button>
                                 </h3>
+
                                 <div class="pt-6" x-description="Filter section, show/hide based on section state."
                                     id="filter-section-1" x-show="open" style="display: none;">
                                     <div class="space-y-4">
@@ -645,29 +747,50 @@
                                         class="overflow-hidden rounded-xl border border-gray-200 hover:shadow transition-shadow">
                                         <a href="{{ route('prompts.show', $prompt->slug) }}" class="">
                                             <div
-                                                class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
-                                                {{-- <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple"
-                                        class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10"> --}}
-                                                <div
-                                                    class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10 flex items-center justify-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-                                                    </svg>
+                                                class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6 relative">
 
-                                                </div>
                                                 <div class="text-sm font-medium leading-6 text-gray-900">
                                                     {{ $prompt->title }}</div>
 
+                                                <div
+                                                    class="absolute right-0 top-0 p-3 text-xs text-white rounded-bl-lg {{ $prompt->type == 'work' ? 'bg-blue-400' : 'bg-indigo-400' }}">
+                                                    {{ $prompt->type }}
+                                                </div>
+
                                             </div>
                                             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+                                                <div class="flex justify-center gap-x-4 py-3">
+                                                    <dd class="flex items-start justify-center gap-x-2 text-gray-500">
+
+                                                        @php
+                                                            $platformLogoAssetName = '';
+
+                                                            switch ($prompt->platform) {
+                                                                case 'ChatGPT':
+                                                                    $platformLogoAssetName = 'chat-gpt.png';
+                                                                    break;
+                                                                case 'Midjourney':
+                                                                    $platformLogoAssetName = 'mid-journey.png';
+                                                                    break;
+                                                                case 'Dall-E':
+                                                                    $platformLogoAssetName = 'dalle.png';
+                                                                    break;
+                                                                default:
+                                                                    $platformLogoAssetName = 'chat-gpt.png';
+                                                                    break;
+                                                            }
+                                                        @endphp
+
+                                                        <img src="{{ asset('assets/images/ai-platforms/' . $platformLogoAssetName) }}"
+                                                            alt="{{ $prompt->platform }}" class="block w-24">
+                                                    </dd>
+                                                </div>
                                                 <div class="flex justify-between gap-x-4 py-3">
-                                                    <dd class="flex items-start gap-x-2 text-gray-500">
+                                                    <dd class="flex items-start gap-x-2 text-gray-500 text-sm">
                                                         {{ $prompt->short_description }}
                                                     </dd>
                                                 </div>
+
                                                 <div class="flex justify-between gap-x-4 py-3 text-xs">
                                                     <dt class="text-gray-500">Senest opdateret</dt>
                                                     <dd class="text-gray-700"><time
