@@ -426,20 +426,21 @@
                 @endif
             </div>
 
-            <section aria-labelledby="products-heading" class="pb-24 pt-6 bg-white rounded shadow p-6 shadow">
+            <section aria-labelledby="products-heading" class="pb-24 pt-6 bg-white rounded p-6 shadow relative">
+                @if ($hasActiveFilters)
+                    <div class=" border-t border-slate-50 pt-6 absolute top-0 left-0 -mt-6">
+                        <button type="button"
+                            class="w-32 mx-auto py-1 px-3 bg-red-500 text-white hover:bg-theme-accent-secondary hover:text-theme-accent-primary text-sm rounded-br-md transition ease-in-out duration-300"
+                            wire:click="resetFilters()">Nulstil filtre
+                        </button>
+                    </div>
+                @endif
 
                 <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                     <!-- Filters -->
                     <form class="hidden lg:block">
 
-                        @if ($hasActiveFilters)
-                            <div class=" border-t border-slate-50 pt-6">
-                                <button
-                                    class="w-32 mx-auto py-1 px-3 bg-indigo-500 text-white hover:bg-theme-accent-secondary hover:text-theme-accent-primary text-sm rounded transition ease-in-out duration-300"
-                                    wire:click="resetFilters()">Nulstil filtre
-                                </button>
-                            </div>
-                        @endif
+
 
                         {{-- <h3 class="sr-only">Categories</h3>
                         <ul role="list"
@@ -497,11 +498,11 @@
 
                                     @foreach ($platformOptions as $key => $platform)
                                         <div class="flex items-center">
-                                            <input id="filter-platform-{{ $platform }}" name="platforms[]"
-                                                value="{{ $platform }}" type="checkbox"
+                                            <input id="filter-platform-{{ $key }}" name="platforms[]"
+                                                value="{{ $key }}" type="checkbox"
                                                 wire:model.live="platforms"
                                                 class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                            <label for="filter-platform-{{ $platform }}"
+                                            <label for="filter-platform-{{ $key }}"
                                                 class="cursor-pointer ml-3 text-sm text-gray-600">
                                                 {{ $platform }}</label>
                                         </div>
@@ -774,6 +775,9 @@
                                                                     break;
                                                                 case 'Dall-E':
                                                                     $platformLogoAssetName = 'dalle.png';
+                                                                    break;
+                                                                case 'adobe-firefly':
+                                                                    $platformLogoAssetName = 'adobe-firefly.png';
                                                                     break;
                                                                 default:
                                                                     $platformLogoAssetName = 'chat-gpt.png';

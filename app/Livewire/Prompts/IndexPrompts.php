@@ -22,7 +22,8 @@ class IndexPrompts extends Component
     public $platformOptions = [
         'ChatGPT' => 'ChatGPT',
         'Midjourney' => 'Midjourney',
-        'Dall-E' => 'Dall-E'
+        'Dall-E' => 'Dall-E',
+        'adobe-firefly' => 'Adobe Firefly'
     ];
 
     public $hasActiveFilters = false;
@@ -79,6 +80,7 @@ class IndexPrompts extends Component
     {
         $this->tags = [];
         $this->types = [];
+        $this->platforms = [];
         $this->searchTerm = '';
     }
 }

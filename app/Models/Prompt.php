@@ -11,9 +11,14 @@ use RalphJSmit\Laravel\SEO\Support\SEOData;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Prompt extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
+class Prompt extends Model implements HasMedia
 {
-    use HasFactory, HasTags, HasSEO, HasTranslations;
+    use HasFactory, HasTags, HasSEO, HasTranslations, InteractsWithMedia;
 
 
     protected $guarded = [];
@@ -49,5 +54,13 @@ class Prompt extends Model
             $uuid = Str::uuid();
             $prompt->update(['slug' => $uuid]);
         });
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
     }
 }

@@ -29,6 +29,7 @@ use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\PromptResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PromptResource\RelationManagers;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 
 class PromptResource extends Resource
@@ -63,6 +64,7 @@ class PromptResource extends Resource
                     ->options([
                         'ChatGPT' => 'ChatGPT',
                         'Midjourney' => 'Midjourney',
+                        'adobe-firefly' => 'Adobe Firefly',
                         'Dall-E' => 'Dall-E'
                     ]),
                 TextInput::make('version_tested')
@@ -72,6 +74,11 @@ class PromptResource extends Resource
                 Textarea::make('role_system'),
                 Textarea::make('role_user'),
                 RichEditor::make('example_output'),
+
+                SpatieMediaLibraryFileUpload::make('output_examples')
+                    ->multiple()
+                    ->collection('output_examples'),
+
 
                 Select::make('type')
                     ->options([
