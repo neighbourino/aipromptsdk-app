@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Prompts;
 
+use App\Models\Category;
 use App\Models\Prompt;
 use Livewire\Component;
 use Spatie\Tags\Tag;
@@ -13,11 +14,14 @@ class IndexPrompts extends Component
 
     public $searchTerm = '';
 
+    public $categoryOptions;
+
     public $tagOptions;
 
     public $tags = [];
     public $types = [];
     public $platforms = [];
+    public $categories = [];
 
     public $platformOptions = [
         'ChatGPT' => 'ChatGPT',
@@ -32,6 +36,7 @@ class IndexPrompts extends Component
     {
 
         $this->tagOptions = Tag::all();
+        $this->categoryOptions = Category::all();
     }
 
     public function render()
@@ -40,6 +45,15 @@ class IndexPrompts extends Component
         $this->hasActiveFilters = false;
 
         $prompts = Prompt::query();
+
+        if (isset($this->categories) && count($this->categories)) {
+
+            $prompts = $prompts->whereHas('categories', function ($q) {
+                $q->whereIn('categories.id', $this->categories);
+            });
+
+            $this->hasActiveFilters = true;
+        }
 
         if (isset($this->tags) && count($this->tags)) {
             $prompts = $prompts->whereHas('tags', function ($q) {
@@ -82,5 +96,6 @@ class IndexPrompts extends Component
         $this->types = [];
         $this->platforms = [];
         $this->searchTerm = '';
+        $this->categories = [];
     }
 }

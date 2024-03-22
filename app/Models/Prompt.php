@@ -29,7 +29,6 @@ class Prompt extends Model implements HasMedia
     public function getDynamicSEOData(): SEOData
     {
 
-
         $pathToFeaturedImageRelativeToPublicPath = '';
 
         return new SEOData(
@@ -62,5 +61,10 @@ class Prompt extends Model implements HasMedia
             ->addMediaConversion('preview')
             ->fit(Fit::Contain, 300, 300)
             ->nonQueued();
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }

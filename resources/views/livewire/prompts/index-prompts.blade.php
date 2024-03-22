@@ -430,8 +430,17 @@
                 @if ($hasActiveFilters)
                     <div class=" border-t border-slate-50 pt-6 absolute top-0 left-0 -mt-6">
                         <button type="button"
-                            class="w-32 mx-auto py-1 px-3 bg-red-500 text-white hover:bg-theme-accent-secondary hover:text-theme-accent-primary text-sm rounded-br-md transition ease-in-out duration-300"
-                            wire:click="resetFilters()">Nulstil filtre
+                            class="flex items-center mx-auto py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white hover:bg-theme-accent-secondary hover:text-theme-accent-primary text-sm rounded-br-md transition ease-in-out duration-300"
+                            wire:click="resetFilters()">
+                            <span class="inline-block mr-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+
+                            </span>
+                            Nulstil filtre
                         </button>
                     </div>
                 @endif
@@ -441,8 +450,8 @@
                     <form class="hidden lg:block">
 
 
-
-                        {{-- <h3 class="sr-only">Categories</h3>
+                        {{-- 
+                        <h3 class="sr-only">Categories</h3>
                         <ul role="list"
                             class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                             <li>
@@ -462,6 +471,57 @@
                             </li>
 
                         </ul> --}}
+
+                        <div x-data="{ open: true }" class="border-b border-gray-200 py-6">
+                            <h3 class="-my-3 flow-root">
+                                <button type="button" x-description="Expand/collapse section button"
+                                    class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
+                                    aria-controls="filter-section-0" @click="open = !open" aria-expanded="false"
+                                    x-bind:aria-expanded="open.toString()">
+                                    <span class="font-medium text-gray-900">Kategorier</span>
+                                    <span class="ml-6 flex items-center">
+                                        <svg class="h-5 w-5"
+                                            x-description="Expand icon, show/hide based on section open state."
+                                            x-show="!(open)" viewBox="0 0 20 20" fill="currentColor"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5"
+                                            x-description="Collapse icon, show/hide based on section open state."
+                                            x-show="open" viewBox="0 0 20 20" fill="currentColor"
+                                            aria-hidden="true" style="display: none;">
+                                            <path fill-rule="evenodd"
+                                                d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </h3>
+
+                            <div class="pt-6" x-description="Filter section, show/hide based on section state."
+                                id="filter-section-4" x-show="open" style="display: none;">
+                                <div class="space-y-4">
+
+
+
+                                    @foreach ($categoryOptions as $key => $category)
+                                        <div class="flex items-center">
+                                            <input id="filter-category-{{ $category->id }}" name="categories[]"
+                                                value="{{ $category->id }}" type="checkbox"
+                                                wire:model.live="categories"
+                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-category-{{ $category->id }}"
+                                                class="cursor-pointer ml-3 text-sm text-gray-600">
+                                                {{ $category->name }}</label>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div x-data="{ open: true }" class="border-b border-gray-200 py-6">
                             <h3 class="-my-3 flow-root">

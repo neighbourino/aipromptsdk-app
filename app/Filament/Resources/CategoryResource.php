@@ -2,41 +2,36 @@
 
 namespace App\Filament\Resources;
 
-use Closure;
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Prompt;
 use Filament\Forms\Set;
+use App\Models\Category;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
-use RalphJSmit\Filament\SEO\SEO;
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
+
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-
 use Filament\Forms\Components\RichEditor;
-
 use Illuminate\Database\Eloquent\Builder;
 
-use Filament\Resources\Concerns\Translatable;
-use Filament\Forms\Components\SpatieTagsInput;
-use App\Filament\Resources\PromptResource\Pages;
+use App\Filament\Resources\CategoryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\PromptResource\RelationManagers;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use App\Filament\Resources\CategoryResource\RelationManagers;
 
+use Filament\Resources\Concerns\Translatable;
 
-class PromptResource extends Resource
+class CategoryResource extends Resource
 {
+
     use Translatable;
 
-    protected static ?string $model = Prompt::class;
+    protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -44,13 +39,12 @@ class PromptResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')
+                TextInput::make('name')
                     ->required()
                     ->maxLength(255)
                     ->live(onBlur: true)
                     ->afterStateUpdated(function (Set $set, $state) {
                         $uuid = Str::uuid();
-                        #$set('slug', Str::slug($state));
                     }),
                 TextInput::make('slug')
                     ->readOnly()
@@ -59,45 +53,20 @@ class PromptResource extends Resource
                     ->default(false)
                     ->dehydrated(false),
 
-                Select::make('platform')
-                    ->options([
-                        'ChatGPT' => 'ChatGPT',
-                        'Midjourney' => 'Midjourney',
-                        'adobe-firefly' => 'Adobe Firefly',
-                        'Dall-E' => 'Dall-E'
-                    ]),
-                TextInput::make('version_tested')
-                    ->required(),
-                RichEditor::make('description'),
-                Textarea::make('short_description'),
-                Textarea::make('role_system'),
-                Textarea::make('role_user'),
-                RichEditor::make('example_output'),
-
-                SpatieMediaLibraryFileUpload::make('output_examples')
-                    ->multiple()
-                    ->collection('output_examples'),
+                Select::make('parent_id')
+                    ->label('Parent Category')
+                    ->options(Category::all()->pluck('name', 'id'))
+                    ->searchable()
 
 
-                Select::make('type')
-                    ->options([
-                        'work' => 'Work',
-                        'play' => 'Play'
-                    ]),
-
-                SpatieTagsInput::make('tags'),
-
-                //     Section::make([
-                //     SEO::make()
-                // ]),
-            ])->columns(1);
+            ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('name')
             ])
             ->filters([
                 //
@@ -115,19 +84,18 @@ class PromptResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\CategoriesRelationManager::class,
+            RelationManagers\PromptsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPrompts::route('/'),
-            'create' => Pages\CreatePrompt::route('/create'),
-            'edit' => Pages\EditPrompt::route('/{record}/edit'),
+            'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategory::route('/create'),
+            'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
-
 
     public static function getTranslatableLocales(): array
     {
