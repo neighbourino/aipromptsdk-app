@@ -7,7 +7,8 @@ use App\Livewire\Prompts\IndexPrompts;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShowPromptController;
 use App\Http\Controllers\ListAllPromptsController;
-
+use App\Http\Controllers\ListGuidesController;
+use App\Http\Controllers\ShowGuideController;
 
 Route::localized(
     function () {
@@ -20,9 +21,9 @@ Route::localized(
         Route::get('/prompts/{prompt}', ShowPromptController::class)->name('prompts.show');
 
 
-        Route::get('/guides', function () {
-            return view('guides.index');
-        })->name('guides.index');
+        Route::get('/guides', ListGuidesController::class)->name('guides.index');
+
+        Route::get('/guides/{guide}', ShowGuideController::class)->name('guides.show');
 
         Route::get('/artikler', function () {
             return view('articles.index');

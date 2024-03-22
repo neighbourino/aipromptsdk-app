@@ -14,9 +14,6 @@ class ShowPromptController extends Controller
     public function __invoke(Prompt $prompt)
     {
 
-        #dd(App::getLocale(), $prompt);
-        #   app()->setLocale('en');
-
         return view('prompts.show', compact('prompt'));
     }
 }

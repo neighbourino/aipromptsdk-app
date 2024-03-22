@@ -5,26 +5,30 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home') }}">
+                    <a href="{{ route('home') }}"
+                        class="font-medium border-b border-t border-indigo-500 px-3 py-2 text-indigo-500  text-xs rounded ">
                         {{-- <x-application-mark class="block h-9 w-auto" /> --}}
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="" class="block h-12 w-auto">
+                        {{-- <img src="{{ asset('assets/images/logo.png') }}" alt="" class="block h-12 w-auto"> --}}
+                        AI Prompts <span class="text-gray-400 font-bold">HQ</span>
                     </a>
                 </div>
 
+
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('prompts.index') }}" :active="request()->routeIs('prompts.index')">
+                    <x-nav-link href="{{ route('prompts.index') }}" :active="request()->routeIs('*.prompts.*')">
                         {{ __('Prompts') }}
                     </x-nav-link>
 
 
 
 
-                    {{-- <x-nav-link href="{{ route('guides.index') }}" :active="request()->routeIs('guides.index')">
+                    <x-nav-link href="{{ route('guides.index') }}" :active="request()->routeIs('*.guides.index')">
                         {{ __('Guides') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('articles.index') }}" :active="request()->routeIs('articles.index')">
+                    {{--
+                    <x-nav-link href="{{ route('articles.index') }}" :active="request()->routeIs('*.articles.index')">
                         {{ __('Artikler') }}
                     </x-nav-link> --}}
                 </div>
