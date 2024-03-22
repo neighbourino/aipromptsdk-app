@@ -1,4 +1,4 @@
-<div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+<div class="mt-6 space-y-12 lg:mt-6 lg:space-y-12">
 
 
     @foreach ($guides as $key => $guide)
@@ -10,7 +10,7 @@
                     : asset('assets/images/guide-thumbnail-fallback.png');
 
         @endphp
-        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+        <article class="relative isolate flex flex-col gap-8 lg:flex-row border-b border-indigo-100 pb-6">
             <a href="{{ route('guides.show', $guide) }}"
                 class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
                 <img src="{{ $thumbnailUrl }}" alt=""
