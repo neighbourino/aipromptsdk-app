@@ -23,7 +23,7 @@ class Prompt extends Model implements HasMedia
 
     protected $guarded = [];
 
-    public $translatable = ['title', 'description'];
+    public $translatable = ['title', 'description', 'short_description', 'role_system', 'role_user', 'example_output', 'links'];
 
 
     public function getDynamicSEOData(): SEOData
