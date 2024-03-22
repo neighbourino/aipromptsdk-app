@@ -12,9 +12,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+use \Spatie\Tags\HasTags;
+
 class Guide extends Model implements HasMedia
 {
-    use HasFactory, HasSEO, HasTranslations, InteractsWithMedia;
+    use HasFactory, HasSEO, HasTranslations, InteractsWithMedia, HasTags;
 
     protected $guarded = [];
 

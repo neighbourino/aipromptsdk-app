@@ -19,9 +19,17 @@
             </a>
             <div>
                 <div class="flex items-center gap-x-4 text-xs">
-                    <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                    <a href="#"
-                        class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
+                    <time datetime="{{ $guide->created_at->format('Y-m-d') }}"
+                        class="text-gray-500">{{ $guide->created_at->format('d. F, Y') }}</time>
+
+                    @if ($guide->tags)
+                        @foreach ($guide->tags as $key => $tag)
+                            <span class="relative z-10 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-600">
+                                {{ $tag->name }}
+                            </span>
+                        @endforeach
+                    @endif
+
                 </div>
                 <div class="group relative max-w-xl">
                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -30,15 +38,10 @@
                             {{ $guide->title }}
                         </a>
                     </h3>
-                    <p class="mt-5 text-sm leading-6 text-gray-600">Illo sint voluptas. Error voluptates
-                        culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde.
-                        Sed exercitationem placeat consectetur nulla deserunt vel iusto corrupti dicta
-                        laboris incididunt.</p>
+                    <p class="mt-5 text-sm leading-6 text-gray-600">{{ $guide->short_description }}</p>
                 </div>
                 <div class="mt-6 flex border-t border-gray-900/5 pt-6">
                     <div class="relative flex items-center gap-x-4">
-                        {{-- <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt="" class="h-10 w-10 rounded-full bg-gray-50"> --}}
                         <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="w-8 h-8">
@@ -50,10 +53,10 @@
                         </div>
                         <div class="text-sm leading-6">
                             <p class="font-semibold text-gray-900">
-                                <a href="#">
+                                <span>
                                     <span class="absolute inset-0"></span>
                                     AI Prompts
-                                </a>
+                                </span>
                             </p>
                             <p class="text-gray-600">Redaktør</p>
                         </div>

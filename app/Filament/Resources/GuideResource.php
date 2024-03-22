@@ -20,10 +20,11 @@ use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Resources\Concerns\Translatable;
+use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\GuideResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Components\Builder as FormBuilder;
 
+use Filament\Forms\Components\Builder as FormBuilder;
 use App\Filament\Resources\GuideResource\RelationManagers;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
@@ -96,7 +97,10 @@ class GuideResource extends Resource
                                     ->label('Alt text')
                                     ->required(),
                             ]),
-                    ])
+
+
+                    ]),
+                SpatieTagsInput::make('tags'),
             ])->columns(1);
     }
 

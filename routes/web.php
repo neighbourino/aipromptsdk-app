@@ -20,8 +20,8 @@ Route::localized(
 
         Route::get('/prompts/{prompt}', ShowPromptController::class)->name('prompts.show');
 
-
         Route::get('/guides', ListGuidesController::class)->name('guides.index');
+        #Route::get('/guides/{tag}', ListGuidesController::class)->name('guides.tag');
 
         Route::get('/guides/{guide}', ShowGuideController::class)->name('guides.show');
 
