@@ -111,6 +111,7 @@ class PromptResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title'),
+                TextColumn::make('platform'),
                 TextColumn::make('status')->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'draft' => 'gray',
