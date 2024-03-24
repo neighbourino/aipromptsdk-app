@@ -61,6 +61,16 @@ class PromptResource extends Resource
                     ->default(false)
                     ->dehydrated(false),
 
+                Select::make('status')
+                    ->options([
+                        'published' => 'Published',
+                        //'scheduled' => 'Scheduled',
+                        'draft' => 'Draft',
+                        // 'pending' => 'pending',
+                        'trash' => 'Trash',
+                        //  'auto-draft' => 'Auto-Draft'
+                    ]),
+
                 Select::make('platform')
                     ->options([
                         'ChatGPT' => 'ChatGPT',
@@ -68,8 +78,7 @@ class PromptResource extends Resource
                         'adobe-firefly' => 'Adobe Firefly',
                         'Dall-E' => 'Dall-E'
                     ]),
-                TextInput::make('version_tested')
-                    ->required(),
+                TextInput::make('version_tested'),
                 RichEditor::make('description'),
                 Textarea::make('short_description'),
                 Textarea::make('role_system'),
@@ -89,6 +98,8 @@ class PromptResource extends Resource
 
                 SpatieTagsInput::make('tags'),
 
+
+
                 //     Section::make([
                 //     SEO::make()
                 // ]),
@@ -99,7 +110,14 @@ class PromptResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('title'),
+                TextColumn::make('status')->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'draft' => 'gray',
+                        'scheduled' => 'warning',
+                        'published' => 'success',
+                        'trash' => 'danger',
+                    })
             ])
             ->filters([
                 //

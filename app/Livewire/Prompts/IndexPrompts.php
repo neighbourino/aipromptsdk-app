@@ -44,7 +44,7 @@ class IndexPrompts extends Component
 
         $this->hasActiveFilters = false;
 
-        $prompts = Prompt::query();
+        $prompts = Prompt::query()->published();
 
         if (isset($this->categories) && count($this->categories)) {
 

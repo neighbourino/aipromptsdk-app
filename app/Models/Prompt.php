@@ -4,16 +4,17 @@ namespace App\Models;
 
 use \Spatie\Tags\HasTags;
 use Illuminate\Support\Str;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
+
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Prompt extends Model implements HasMedia
@@ -23,7 +24,12 @@ class Prompt extends Model implements HasMedia
 
     protected $guarded = [];
 
-    public $translatable = ['title', 'description', 'short_description', 'role_system', 'role_user', 'example_output', 'links'];
+    public $translatable = ['title', 'description', 'short_description', 'role_system', 'role_user', 'example_output', 'links', 'status'];
+
+    protected $casts = [
+        'publish_date' => 'datetime',
+        'republish_date' => 'datetime',
+    ];
 
 
     public function getDynamicSEOData(): SEOData
@@ -66,5 +72,11 @@ class Prompt extends Model implements HasMedia
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+
+    public function scopePublished($query)
+    {
+        return $query->where('status->' . (App::currentLocale()), 'published');
     }
 }
